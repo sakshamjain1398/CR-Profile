@@ -1,0 +1,42 @@
+<% include partials/header %>
+
+<div class="container">
+<div class="page-header"><h1>Search Results</h1></div>
+<div class="row" >
+<% data.forEach(function(clan,i){ %>
+	<div class=" col-lg-4 ol-md-4 col-sm-6 col-xs-12" >
+	<div  class="thumbnail" style="height:150px;">
+	<a href="/clan/<%=clan["tag"]%>" style="color:black;height:150px;display:block">
+	<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5" style="padding-right:0;padding-left:5px;">
+	<img src="	<%= clan["badge"]["image"] %>	" class="img-responsive" style="height:70px ">
+	<%=clan["tag"]%>
+	<br />
+	<label>Type:</label>
+	<%=clan["type"]%>
+	<br />
+	<span class="label label-primary">	<%=clan["location"]["name"]%></span>
+	</div>
+	<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7" style="padding-left:0;padding-right:5px;">
+	
+	<strong style= 'border-bottom:1px solid #eee;font-size:20px'><%= clan["name"]%></strong>
+	
+	<br/>
+	<label><img src="/pics/trophy.png" style="height:20px"> Trophies:</label>
+	<%= clan["score"]%>
+	<br />
+	<label><img src="/pics/social.png" style="height:20px"> Members:</label>
+	<%=clan["memberCount"]%>/50
+	<br />
+	<label><img src="/pics/trophy.png" style="height:20px"> Required Trophies:</label>
+	<%=clan["requiredScore"]%>
+	<br />
+	<label><img src="/pics/Cards.png" style="height:20px"> Donations:</label>
+	<%=clan["donations"]%>
+	</div>
+	</a>
+	</div>
+</div>
+<% }) %>
+</div>
+</div>
+<% include partials/footer %>

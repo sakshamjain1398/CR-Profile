@@ -1,0 +1,38 @@
+
+<script type="text/javascript">
+function admSelectCheck1(nameSelect)
+{
+    if(nameSelect){
+        if(nameSelect.value =="Clan (by Name)" ){
+            document.getElementById("options1").style.display = "";
+        }
+        else{
+            document.getElementById("options1").style.display = "none";
+        }
+    }
+    else{
+        document.getElementById("options1").style.display = "none";
+    }
+}
+window.onload=function () {
+$("#sel1").val($("#sel1 option:first").val());
+        var arrow_rotate=document.getElementsByClassName("arrow-rotate");
+        var arrow=document.getElementsByClassName("arrow");
+        for(var i=0;i<arrow_rotate.length;i++)
+        {
+            let index=i;
+            arrow_rotate[index].onclick=function () {
+                if(arrow[index].classList.contains("fa-rotate-180")){
+
+                    arrow[index].classList.remove("fa-rotate-180");
+                }
+                else
+                {
+                    arrow[index].classList.add("fa-rotate-180");
+                }
+            }
+        }
+}
+</script>
+</body>
+</html>

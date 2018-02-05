@@ -1,0 +1,63 @@
+<% include partials/header %>
+<div class="container">
+<form class="navbar-form navbar-left" action="/search" method="GET">
+	<div class="form-group">
+		<input type="text" class="form-control" placeholder="#2U2GGQJ" name="player_tag" required>
+	</div>
+	<i class="fa fa-cog" data-toggle="modal" data-target="#myModal" id="options" aria-hidden="true" style="display:none;font-size:24px;cursor:pointer"></i>
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="color:black">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Advanced Search Options</h4>
+      </div>
+      <div class="modal-body">
+      	<div class="form-group">
+        <input type="number" class="form-control" value="0" name="min_mem">
+    </div>
+        <div class="form-group">
+        <input type="number" class="form-control" value="50" name="max_mem">
+    </div>
+        <div class="form-group">
+        <input type="text" class="form-control" value="0" name="min_score">
+    </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+	<div class="form-group">
+          <select class="form-control selectpicker" id="sel2" name="selector" onchange="admSelectCheck(this);">
+            <option>Player</option>
+            <option>Clan (by Tag)</option>
+            <option>Clan (by Name)</option>
+          </select>
+        </div> 
+	<button type="submit" class="btn btn-default">Search</button>
+</form>
+</div>
+<script type="text/javascript">
+function admSelectCheck(nameSelect)
+{
+    if(nameSelect){
+        if(nameSelect.value =="Clan (by Name)" ){
+            document.getElementById("options").style.display = "";
+        }
+        else{
+            document.getElementById("options").style.display = "none";
+        }
+    }
+    else{
+        document.getElementById("options").style.display = "none";
+    }
+}
+window.onload=function () {
+$("#sel2").val($("#sel2 option:first").val());
+}
+$("#nav-form")["0"].style.display = 'none';
+</script>
+<% include partials/footer %>

@@ -1,0 +1,65 @@
+<% include partials/header %>
+<div class="jumbotron" style="background:rgba(256,256,256,.1); padding:24px 30px;margin-bottom:20px">
+	<span style="font-size:3em"><%=data["name"]%></span>
+	<svg viewBox="0 0 24 24" style="width: 40px; height: 40px;"><path d="M12 20.58l-3.4 1.882-1.643-3.52-3.856-.476.739-3.815L1 12l2.84-2.651-.74-3.815 3.857-.475L8.6 1.539 12 3.42l3.4-1.882 1.643 3.52 3.856.476-.739 3.815L23 12l-2.84 2.651.74 3.815-3.857.475-1.644 3.52z" fill="#2196F3" fill-rule="evenodd" transform="scale(1, 1)"></path>
+		<%if(data["stats"]["level"]>9){%>
+		<text x="4.25" y="17" fill="white"><%=data["stats"]["level"]%></text>
+		<%}else{%>
+			<text x="7.25" y="17" fill="white"><%=data["stats"]["level"]%></text>
+			<%}%>
+	</svg>
+	<div style="float:right;text-align:center">
+	<img src="/pics/arena/<%=data["arena"]["arenaID"]%>.png" style="height:90px;">
+	<br />
+	<div style="font-size:1em;float:right;width:100%"><%=data["arena"]["name"]%></div>
+</div>
+	<br />
+	<span style="font-size:1em"><img src="<%=data["clan"]["badge"]["image"]%>" style="height:30px">  <%=data["clan"]["name"]%></span>
+
+</div>
+<ul class="nav nav-tabs nav-justified">
+		<li ><a href="/player/<%=data["tag"]%>">Stats</a></li>
+		<li ><a href="/player/<%=data["tag"]%>/battles">Battles</a></li>
+		<li  ><a href="/player/<%=data["tag"]%>/deck">Deck</a></li>
+		<li class="active"><a href="/player/<%=data["tag"]%>/cards">Cards</a></li>
+</ul>
+<div class="container">
+		<div class="row-fluid no-gutter" style="margin-top:10px">
+			<div class="a">
+		<% data["cards"].forEach(function (card,i) {%>
+			<div class="col-lg-2 col-md-2 col-sm-3 col-xs-4 card_div">
+			
+			<a  data-toggle="modal" data-target="#myModal<%=i%>" href="#" style="display :block;">
+			<div class="card img-responsive" style="width:-moz-fit-content;width:-webkit-fit-content;width:fit-content;align-self:center;margin:0 auto;">
+			<img src=<%=card["icon"] %> style = 'width:110.8px;height =132px;margin:0 auto; ' class="img-responsive">
+			<strong><span class="card_lvl">Level <%=card["level"]%></span></strong>
+			<% var k=card["count"]/card["requiredForUpgrade"]*100%>
+			<div class="progress" style="position: relative;width: 100%;background:black;margin:0 auto;">
+		  		<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow=<%=card["count"]%> aria-valuemin="0" aria-valuemax=<%=card["requiredForUpgrade"]%> style="width:<%=k%>%;"></div>
+				    <strong><span  style="position: absolute;display: flex;width: 100%;justify-content: center;align-items: center;color:white"><%=card["count"]%>/<%=card["requiredForUpgrade"]%></span></strong>
+				
+			</div>
+			</div>
+			</a>
+
+			</div>
+			
+			<div class="modal fade" id="myModal<%=i%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="color:black">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+			      </div>
+			      <div class="modal-body">
+			        saksam jai<%=i%>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+
+		<% }) %>
+	</div>
+	</div>
+</div>
+<% include partials/footer %>

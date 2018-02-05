@@ -1,0 +1,42 @@
+<% include partials/header %>
+<div class="container">
+<div class="page-header">
+	<h1>Top Players</h1>
+</div>
+<div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Select Region <span class="caret"></span></button>
+                <ul class="dropdown-menu scrollable-menu" role="menu">
+                    <li class="/top/players/GLO"><a href="/top/players/GLO">Global</a></li>
+                    <%region.forEach(function (reg,i) {%>
+                    <li><a href="/top/players/<%=reg["key"]%>"><%=reg["name"]%></a></li>
+                    <%})%>
+                </ul>
+            </div>
+<table class="table">
+	<thead style="font-size:24px">
+		<tr>
+			<th class="center">#</th>
+			<th >Player</th>
+			<th class="center">Trophies</th>
+			<th class="center">League</th>
+			<th >Clan</th>
+		</tr>
+	</thead>
+	<tbody style="font-size:18px">
+		<%data.forEach(function (player,i) {%>
+			<tr>
+			<th class="center"><%=i+1%></th>
+			<td ><a href="/player/<%=player["tag"]%>" style="color:white"><%=player["name"]%></a></td>
+			<td class="center"><%=player["trophies"]%></td>
+			<td class="center"><img src="/pics/arena/<%=player["arena"]["arenaID"]%>.png" style="height:40px;"></td>
+			<%if(player.clan){%>
+			<td><a href="/clan/<%=player["clan"]["tag"]%>" style="color:white"><img src="<%=player["clan"]["badge"]["image"]%>" style="height:40px;"> <%=player.clan.name%></a></td>
+			<%}else{%>
+			<td>-</td>
+			<%}%>
+		</tr>
+		<%});%>
+	</tbody>
+</table>
+</div>
+<% include partials/footer %>

@@ -1,0 +1,38 @@
+<% include partials/header %>
+<div class="container">
+<div class="page-header">
+	<h1>Top Clans</h1>
+</div>
+            <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Select Region <span class="caret"></span></button>
+                <ul class="dropdown-menu scrollable-menu" role="menu">
+                    <li class="/top/clans/GLO"><a href="#">Global</a></li>
+                    <%region.forEach(function (reg,i) {%>
+                    <li><a href="/top/clans/<%=reg["key"]%>"><%=reg["name"]%></a></li>
+                    <%})%>
+                </ul>
+            </div>
+<table class="table" >
+	<thead style="font-size:24px">
+		<tr>
+			<th class="center">#</th>
+			<th >Clan</th>
+			<th class="center">Trophies</th>
+			<th class="center">Members</th>
+			<th >Location</th>
+		</tr>
+	</thead>
+	<tbody style="font-size:18px">
+		<%data.forEach(function (clan,i) {%>
+			<tr>
+			<th class="center"><%=i+1%></th>
+			<td ><a href="/clan/<%=clan["tag"]%>" style="color:white"><img src="<%=clan["badge"]["image"]%>" style="height:40px;"> <%=clan["name"]%></a></td>
+			<td class="center"><%=clan["score"]%></td>
+			<td class="center"><%=clan["memberCount"]%> / 50</td>
+			<td><%=clan["location"]["name"]%></td>
+		</tr>
+		<%})%>
+	</tbody>
+</table>
+</div>
+<% include partials/footer %>

@@ -1,0 +1,88 @@
+<% include partials/header %>
+<div class="jumbotron" style="background:rgba(256,256,256,.1); padding:24px 30px;margin-bottom:20px">
+	<span style="font-size:3em"><img src="<%=data["badge"]["image"]%>" style="height:90px"> <%=data["name"]%></span><span style="margin:auto 10px;font-size:1.5em" class="label label-info"><%=data.type%></span><br />
+	<div style="font-size:1.1em;margin-left:90px">
+	<small ><%=data["description"]%></small>
+</div>
+	<div style="float:right;text-align:center">
+	<br />
+	<div style="font-size:1em;float:right;width:100%"><%=data["arena"]%></div>
+</div>
+</div>
+<div class="container">
+	<div class="panel panel-default panel-trans">
+    <div class=" collapse-heading panel-heading" role="tab" id="headingOne">
+      <h4 class="panel-title">
+        <a class="collapsed arrow-rotate" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+        	<i class="fa fa-chevron-down arrow" aria-hidden="true"></i>
+          Clan Stats
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+	<div class="row">
+		
+	<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 ">
+		<ul class="list-group">
+	<li class="list-group-item active"><img src="/pics/trophy.png" class="stats_pics">  Trophies</li>
+	<li class="list-group-item" style="color:black">
+		<div class="panel panel-default">
+  <div class="panel-heading">Trophies</div>
+  <div class="panel-body">
+    <%=data["score"]%>
+  </div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">Max Trophies</div>
+  <div class="panel-body">
+  </div>
+</div>
+</li>
+	</ul>
+</div>
+    </div>
+</div>
+</div>
+<div class="panel panel-default panel-trans">
+    <div class=" collapse-heading panel-heading" role="tab" id="headingThree">
+      <h4 class="panel-title">
+        <a class="collapsed arrow-rotate" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+        	<i class="fa fa-chevron-down arrow" aria-hidden="true"></i>
+          Members
+        </a>
+      </h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
+      <div class="panel-body">
+    <table class="table" >
+	<thead style="font-size:24px">
+		<tr>
+			<th class="center">#</th>
+			<th >Name</th>
+			<th class="center">Trophies</th>
+			<th >Role</th>
+			<th class="center">Donations</th>
+			<th class="center">Clan Chest Crowns</th>
+		</tr>
+	</thead>
+	<tbody style="font-size:18px">
+		
+			<%data.members.forEach(function (member,i) {%>
+				<tr>
+				<td><%=i%></td>
+			<td><a href="/player/<%=member.tag%>" style="color:white"><img src="/pics/arena/<%=member.arena.arenaID%>.png" style="height:40px;"> <%=member.name%></a></td>
+			<td class="center"><%=member.trophies%></td>
+			<td><%=member.role%></td>
+			<td class="center"><%=member.donations%></td>
+			<td class="center"><%=member.clanChestCrowns%></td>
+			</tr>
+			<%})%>
+		
+	</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<% include partials/footer %>
